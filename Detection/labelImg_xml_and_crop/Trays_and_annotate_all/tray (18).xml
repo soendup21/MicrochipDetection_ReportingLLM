@@ -1,0 +1,50 @@
+<annotation>
+	<folder>Trays_and_annotate</folder>
+	<filename>tray (18).jpg</filename>
+	<path>E:\coding_project\xml_to_jpg\Trays_and_annotate\tray (18).jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3840</width>
+		<height>2160</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Bad_mark_from_BMS_mold</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2452</xmin>
+			<ymin>732</ymin>
+			<xmax>2607</xmax>
+			<ymax>853</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Bad_mark_from_BMS_mold</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2450</xmin>
+			<ymin>894</ymin>
+			<xmax>2616</xmax>
+			<ymax>1019</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Bad_mark_from_BMS_mold</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2248</xmin>
+			<ymin>1070</ymin>
+			<xmax>2411</xmax>
+			<ymax>1188</ymax>
+		</bndbox>
+	</object>
+</annotation>
