@@ -6,9 +6,9 @@ import os
 label_count = {}
 
 # Example usage
-image_dir = r'labelImg_xml_and_crop\Trays_and_annotate_all'  # Directory where your images are
-xml_dir = r'labelImg_xml_and_crop\Trays_and_annotate_all'  # Directory where your XML files are
-output_dir = r'labelImg_xml_and_crop\jpg_image'  # Directory where cropped images will be saved
+image_dir = 'labelImg_xml_and_crop//Trays_and_annotate_all'  # Directory where your images are
+xml_dir = 'labelImg_xml_and_crop//Trays_and_annotate_all'  # Directory where your XML files are
+output_dir = 'labelImg_xml_and_crop//jpg_image'  # Directory where cropped images will be saved
 
 def parse_xml(xml_file):
     tree = ET.parse(xml_file)
