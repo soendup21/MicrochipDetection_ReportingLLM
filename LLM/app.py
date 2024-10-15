@@ -1,7 +1,7 @@
 import mysql.connector
 import google.generativeai as genai
 
-GOOGLE_API_KEY="AIzaSyCHiMBVoUebpBUcPzMduXuBezBrPsbOakc"
+GOOGLE_API_KEY="AIzaSyDe42Dg9NH-fR-bhb5me4mv40jvLnOh8qU"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 admin_prompt = [
