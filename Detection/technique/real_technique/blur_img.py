@@ -20,6 +20,7 @@ def display_image(image, window_name="Image"):
 def load_image(image_path, width=1280, height=720):
     # Load the image
     image = cv2.imread(image_path)
+    display_image(image)
     
     # Check if the image was successfully loaded
     if image is None:
@@ -32,7 +33,7 @@ def load_image(image_path, width=1280, height=720):
     return resized_image
 
 # Load the image
-img = load_image('dataset//testing_dataset//tray (11).jpg')
+img = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg')
 
 # blur image
 blurred_image = cv2.GaussianBlur(img, (3, 3), 3)

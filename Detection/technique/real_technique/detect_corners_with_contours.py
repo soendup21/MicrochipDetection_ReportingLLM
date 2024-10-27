@@ -18,7 +18,7 @@ def detect_corners_with_contours(image, epsilon_factor=0.02):
 
     return image
 
-image_path = 'mask_RCNN//testing_dataset//tray (16).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
 image = cv2.imread(image_path)
 corner_image = detect_corners_with_contours(image)
 

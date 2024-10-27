@@ -27,16 +27,19 @@ def load_image(image_path, width=1280, height=720):
 
 def get_tray(image, min_area, epsilon_factor=0.02):
     output_image = image.copy()
+    display_image(output_image)
     
     # Increase brightness of the image
     brightened_image = increase_brightness(output_image, value=50)
+    display_image(brightened_image)
     
     # Apply Gaussian Blur to the brightened image to reduce noise
     blurred_image = cv2.GaussianBlur(brightened_image, (0, 0), 1)
-    '''display_image(blurred_image,'blurred_image')'''
+    display_image(blurred_image,'blurred_image')
     
     # Convert the image to HSV color space for processing
     hsv_image = cv2.cvtColor(blurred_image, cv2.COLOR_BGR2HSV)
+    display_image(hsv_image,'blurred_image')
     
     # Define HSV color range for gray
     # Gray doesn’t have a specific hue so 0 to 180
@@ -48,7 +51,7 @@ def get_tray(image, min_area, epsilon_factor=0.02):
 
     # Create a mask that isolates only gray regions
     gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-    '''display_image(gray_mask,'gray_mask')'''
+    display_image(gray_mask,'gray_mask')
     detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
     
     # If no tray detected, try with a modified HSV range
@@ -80,7 +83,7 @@ def find_polygons(output_image, mask, min_area, epsilon_factor):        #use in 
     lower = int(max(0, 0.7 * med_val))
     upper = int(min(255, 1.3 * med_val))
     edges = cv2.Canny(mask, lower, upper)
-    '''display_image(edges, 'Canny')'''
+    display_image(edges, 'Canny')
 
     # Apply dilation to connect edges
     dilated_edges = cv2.dilate(edges, None, iterations=1)
@@ -132,7 +135,7 @@ def increase_brightness(image, value=50):                               #use in 
 # ** User's white suit must not include in camera due to shadow of white suit is considered as gray color (ELSE make camera view to see whole tray on table)
 # **Also the detection will have problem if there is a metal beside tray
 start_time = time.time()
-image_path = 'dataset/testing_dataset/tray (3).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
 img = load_image(image_path)
 if img is not None:
     output_image, polygons = get_tray(img, min_area=50000, epsilon_factor=0.02)

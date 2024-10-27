@@ -32,7 +32,7 @@ def load_image(image_path, width=1280, height=720):
     return resized_image
 
 # Load the image
-img = load_image('mask_RCNN//testing_dataset//tray (16).jpg')
+img = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg')
 
 # Split the color channels
 imgBlue = img[:,:,0]

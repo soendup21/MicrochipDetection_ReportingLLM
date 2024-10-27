@@ -15,7 +15,7 @@ def detect_shi_tomasi_corners(image, max_corners=4, quality_level=0.01, min_dist
 
     return image
 
-image_path = 'mask_RCNN//testing_dataset//tray (16).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
 image = cv2.imread(image_path)
 corner_image = detect_shi_tomasi_corners(image)
 

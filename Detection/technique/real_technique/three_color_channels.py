@@ -43,7 +43,7 @@ def bounding_box(image, min_area=3000, epsilon_factor=0.02):
 
     # Define color range for gray (low saturation, varying value)
     lower_gray = np.array([0, 0, 60])     
-    upper_gray = np.array([180, 60, 180]) 
+    upper_gray = np.array([180, 60, 180])
 
     # Create a mask that isolates only gray regions
     gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
@@ -92,7 +92,7 @@ def bounding_box(image, min_area=3000, epsilon_factor=0.02):
 
 
 # Main program
-image_path = 'mask_RCNN//testing_dataset//tray (16).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
 img = load_image(image_path)
 if img is not None:
     output_image, polygons = bounding_box(img, min_area=15000, epsilon_factor=0.02)

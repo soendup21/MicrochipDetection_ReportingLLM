@@ -98,12 +98,12 @@ def warp_perspective_to_fit_object(cropped_image):
 
     return warped_image
 
-cropped_barcode = load_image('technique//real_technique//warp_sample1.jpg')
-cropped_tray = load_image('technique//real_technique//warp_sample2.jpg')
+'''cropped_barcode = load_image('technique//real_technique//warp_sample1.jpg')'''
+cropped_tray = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/Cropped Polygon Area.jpeg')
 
 # Apply warp perspective to the cropped barcode image to remove black regions
-warped_barcode = warp_perspective_to_fit_object(cropped_barcode)
-display_image(warped_barcode, "Warped Barcode Image Without Black Regions")
+'''warped_barcode = warp_perspective_to_fit_object(cropped_barcode)
+display_image(warped_barcode, "Warped Barcode Image Without Black Regions")'''
 
 # Apply warp perspective to the cropped tray image to remove black regions
 warped_tray = warp_perspective_to_fit_object(cropped_tray)

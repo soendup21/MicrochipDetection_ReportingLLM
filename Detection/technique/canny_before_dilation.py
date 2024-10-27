@@ -73,7 +73,7 @@ def crop_polygon(image, polygon):
 
 # Main
 start_time = time.time()
-img = load_image('mask_RCNN//testing_dataset//tray (16).jpg')
+img = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg')
 if img is not None:
     output_image, approx_polygon, cropped_polygon = bounding_box(img, min_area=10000, max_area=100000)
     if approx_polygon is not None:

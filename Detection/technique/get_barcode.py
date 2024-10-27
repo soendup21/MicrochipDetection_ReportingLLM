@@ -37,20 +37,28 @@ def load_image(image_path, width=1280, height=720):
 def bounding_box(image, min_area, max_area):
 
     output_image = image.copy()
+    display_image(output_image)
     
     # Extract the blue channel Blue=0 Green=1 Red=2 or either make grayscale
     #img_channeled = output_image[:, :, 2]
     gray_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2GRAY)
+    display_image(gray_image)
     
      # Blur the blue channel to reduce noise (1, 1) or (3, 3) or (5, 5)....
      # Can change the last number, it is a sigma which help in blurring more details
     blurred_image = cv2.GaussianBlur(gray_image, (3, 3), 3)
+    display_image(blurred_image)
      
      # Apply Canny edge detection
     med_val = np.median(blurred_image)
     lower = int(max(0, 0.7 * med_val))
     upper = int(min(255, 1.3 * med_val))
     edges = cv2.Canny(blurred_image, threshold1=lower, threshold2=upper)
+    display_image(edges)
+
+    # Apply dilation to connect edges
+    dilated_edges = cv2.dilate(edges, None, iterations=1)
+    display_image(dilated_edges, "Dilated Edges")
     
     # Find contours in the edge-detected image
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -90,7 +98,7 @@ def crop_polygon(image, polygon):
 
 # Main  ***if the detection of barcode is not properly, change the (3, 3), 3 of [blurred_image = cv2.GaussianBlur(gray_image, (3, 3), 3)]
 start_time = time.time()
-img = load_image('dataset//testing_dataset//tray (9).jpg')
+img = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg')
 display_image(img, "Original Image")
 if img is not None:
     # Detect corners on the image
