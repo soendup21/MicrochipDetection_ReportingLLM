@@ -35,7 +35,7 @@ def get_substrates(image, min_width=100, min_height=100, epsilon_factor=0.02):
     lower_color = np.array([5, 30, 30])
     upper_color = np.array([95, 255, 255])
     color_mask = cv2.inRange(hsv_image, lower_color, upper_color)
-    display_image(color_mask, "Primary Green and Yellow Mask")
+    '''display_image(color_mask, "Primary Green and Yellow Mask")'''
     
     # Find bounding boxes for substrates
     substrates = find_bounding_boxes(output_image.copy(), color_mask, min_width, min_height, "Primary Range Bounding Boxes")
@@ -46,7 +46,7 @@ def get_substrates(image, min_width=100, min_height=100, epsilon_factor=0.02):
         lower_color = np.array([10, 40, 40])
         upper_color = np.array([90, 255, 255])
         color_mask = cv2.inRange(hsv_image, lower_color, upper_color)
-        display_image(color_mask, "Fallback Green and Yellow Mask (1st fallback)")
+        '''display_image(color_mask, "Fallback Green and Yellow Mask (1st fallback)")'''
         substrates = find_bounding_boxes(output_image.copy(), color_mask, min_width, min_height, "1st Fallback Range Bounding Boxes")
 
     # Second fallback HSV range if fewer than 6 substrates are still detected
@@ -55,7 +55,7 @@ def get_substrates(image, min_width=100, min_height=100, epsilon_factor=0.02):
         lower_color = np.array([15, 50, 50])
         upper_color = np.array([85, 255, 255])
         color_mask = cv2.inRange(hsv_image, lower_color, upper_color)
-        display_image(color_mask, "Fallback Green and Yellow Mask (2nd fallback)")
+        '''display_image(color_mask, "Fallback Green and Yellow Mask (2nd fallback)")'''
         substrates = find_bounding_boxes(output_image.copy(), color_mask, min_width, min_height, "2nd Fallback Range Bounding Boxes")
 
     # Final check for exactly 6 substrates
@@ -85,7 +85,7 @@ def find_bounding_boxes(output_image, mask, min_width, min_height, window_name="
             bounding_boxes.append((x, y, w, h))
 
     # Display bounding boxes for the current HSV range
-    display_image(output_image, window_name)
+    '''display_image(output_image, window_name)'''
     return bounding_boxes
 
 def increase_brightness(image, value=50):
@@ -99,7 +99,7 @@ def increase_brightness(image, value=50):
 
 # Main function
 def main():
-    image_path = 'dataset/test_tray.jpeg'  # Update with the correct path
+    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/test_tray.jpeg'  # Update with the correct path
     image = load_image(image_path)
     
     if image is not None:

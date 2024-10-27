@@ -27,19 +27,19 @@ def load_image(image_path, width=1280, height=720):
 
 def get_tray(image, min_area, epsilon_factor=0.02):
     output_image = image.copy()
-    display_image(output_image)
+    '''display_image(output_image)'''
     
     # Increase brightness of the image
     brightened_image = increase_brightness(output_image, value=50)
-    display_image(brightened_image)
+    '''display_image(brightened_image)'''
     
     # Apply Gaussian Blur to the brightened image to reduce noise
     blurred_image = cv2.GaussianBlur(brightened_image, (0, 0), 1)
-    display_image(blurred_image,'blurred_image')
+    '''display_image(blurred_image,'blurred_image')'''
     
     # Convert the image to HSV color space for processing
     hsv_image = cv2.cvtColor(blurred_image, cv2.COLOR_BGR2HSV)
-    display_image(hsv_image,'blurred_image')
+    '''display_image(hsv_image,'blurred_image')'''
     
     # Define HSV color range for gray
     # Gray doesn’t have a specific hue so 0 to 180
@@ -47,11 +47,11 @@ def get_tray(image, min_area, epsilon_factor=0.02):
     # Gray can have a wide range of brightness values. Here, a range of 60 to 180 is used, which includes dark to light gray tones.)
     #*** adjust until get rid of metal noise
     lower_gray = np.array([0, 0, 60])
-    upper_gray = np.array([180, 60, 180])
+    upper_gray = np.array([180, 20, 180])
 
     # Create a mask that isolates only gray regions
     gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-    display_image(gray_mask,'gray_mask')
+    '''display_image(gray_mask,'gray_mask')'''
     detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
     
     # If no tray detected, try with a modified HSV range
@@ -67,7 +67,7 @@ def get_tray(image, min_area, epsilon_factor=0.02):
     if not detected_polygons:
         print("No tray detected with initial HSV range, trying alternative range.")
         lower_gray = np.array([0, 0, 60])
-        upper_gray = np.array([180, 20, 180])
+        upper_gray = np.array([180, 60, 180])
         gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
         display_image(gray_mask,'gray_mask')
         detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
