@@ -16,7 +16,7 @@ def detect_harris_corners(image):
 
     return image
 
-image_path = 'mask_RCNN//testing_dataset//tray (27).jpg'
+image_path = 'dataset//testing_dataset//tray (1).jpg'
 image = cv2.imread(image_path)
 corner_image = detect_harris_corners(image)
 

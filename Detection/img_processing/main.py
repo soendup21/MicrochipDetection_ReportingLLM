@@ -1,13 +1,13 @@
 import time
-from get_barcode_n_image_rotated import load_image, bounding_box as get_barcode, display_image
-from get_tray_reduced_process import bounding_box as get_tray, crop_polygon
+from get_barcode_n_image_rotated import load_image, get_barcode, display_image
+from get_tray_reduced_process import get_tray, crop_polygon
 from warp_perspective_for_cropped_img import warp_perspective_to_fit_object
 
 def main():
     start_time = time.time()
 
     # Step 1: Load input image
-    image_path = 'dataset/testing_dataset/tray (7).jpg'
+    image_path = 'dataset/testing_dataset/tray (3).jpg'
     input_image = load_image(image_path)
     if input_image is None:
         print("Failed to load input image.")

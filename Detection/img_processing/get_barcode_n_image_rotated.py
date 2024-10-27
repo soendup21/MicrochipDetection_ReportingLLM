@@ -60,7 +60,7 @@ def rotate_image(image, angle):
     return rotated_image
 
 # Detect and locate the bounding box
-def bounding_box(image, min_area, max_area):
+def get_barcode(image, min_area, max_area):
     rotated_image = image.copy()
     height = rotated_image.shape[0]
     

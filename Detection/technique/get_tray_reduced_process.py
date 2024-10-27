@@ -4,6 +4,13 @@ import time
 
 def display_image(image, window_name="Image"):
     if image is not None:
+        # Create a resizable window
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+        
+        # Resize window to a fixed dimension (e.g., 1280x720)
+        cv2.resizeWindow(window_name, 1280, 720)
+        
+        # Display the image
         cv2.imshow(window_name, image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -18,7 +25,7 @@ def load_image(image_path, width=1280, height=720):
     resized_image = cv2.resize(image, (width, height))
     return resized_image
 
-def bounding_box(image, min_area, epsilon_factor=0.02):
+def get_tray(image, min_area, epsilon_factor=0.02):
     output_image = image.copy()
     
     # Increase brightness of the image
@@ -48,11 +55,19 @@ def bounding_box(image, min_area, epsilon_factor=0.02):
     if not detected_polygons:
         print("No tray detected with initial HSV range, trying alternative range.")
         lower_gray = np.array([0, 0, 60])
-        upper_gray = np.array([180, 20, 180])
-        # Create a mask that isolates only gray regions
+        upper_gray = np.array([180, 60, 140])
         gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
+        display_image(gray_mask,'gray_mask')
         detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
-
+        
+    # If no tray detected, try with a modified HSV range
+    if not detected_polygons:
+        print("No tray detected with initial HSV range, trying alternative range.")
+        lower_gray = np.array([0, 0, 60])
+        upper_gray = np.array([180, 20, 180])
+        gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
+        display_image(gray_mask,'gray_mask')
+        detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
     if detected_polygons:
         return output_image, detected_polygons
     else:
@@ -117,10 +132,10 @@ def increase_brightness(image, value=50):                               #use in 
 # ** User's white suit must not include in camera due to shadow of white suit is considered as gray color (ELSE make camera view to see whole tray on table)
 # **Also the detection will have problem if there is a metal beside tray
 start_time = time.time()
-image_path = 'dataset//testing_dataset//tray (3).jpg'
+image_path = 'dataset/testing_dataset/tray (3).jpg'
 img = load_image(image_path)
 if img is not None:
-    output_image, polygons = bounding_box(img, min_area=50000, epsilon_factor=0.02)
+    output_image, polygons = get_tray(img, min_area=50000, epsilon_factor=0.02)
     display_image(output_image, "Detected Polygons (Gray Only)")
     if polygons:
         for polygon in polygons:

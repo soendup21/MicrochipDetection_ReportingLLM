@@ -25,7 +25,7 @@ def load_image(image_path, width=1280, height=720):
     resized_image = cv2.resize(image, (width, height))
     return resized_image
 
-def bounding_box(image, min_area, epsilon_factor=0.02):
+def get_tray(image, min_area, epsilon_factor=0.02):
     output_image = image.copy()
     
     # Increase brightness of the image
@@ -48,17 +48,27 @@ def bounding_box(image, min_area, epsilon_factor=0.02):
 
     # Create a mask that isolates only gray regions
     gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-    '''display_image(gray_mask,'gray_mask')'''
+    display_image(gray_mask,'gray_mask')
     detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
     
     # If no tray detected, try with a modified HSV range
     if not detected_polygons:
         print("No tray detected with initial HSV range, trying alternative range.")
         lower_gray = np.array([0, 0, 60])
+        upper_gray = np.array([180, 60, 140])
+        gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
+        display_image(gray_mask,'gray_mask')
+        detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
+        
+    # If no tray detected, try with a modified HSV range
+    if not detected_polygons:
+        print("No tray detected with initial HSV range, trying alternative range.")
+        lower_gray = np.array([0, 0, 60])
         upper_gray = np.array([180, 20, 180])
         gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
+        display_image(gray_mask,'gray_mask')
         detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
-
+        
     if detected_polygons:
         return output_image, detected_polygons
     else:
