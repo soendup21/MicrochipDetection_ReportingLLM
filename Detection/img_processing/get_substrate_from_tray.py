@@ -99,7 +99,7 @@ def increase_brightness(image, value=50):
 
 # Main function
 def main():
-    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/test_tray.jpeg'  # Update with the correct path
+    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/test_tray3.jpeg'  # Update with the correct path
     image = load_image(image_path)
     
     if image is not None:

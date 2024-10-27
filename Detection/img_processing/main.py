@@ -7,7 +7,7 @@ def main():
     start_time = time.time()
 
     # Step 1: Load input image
-    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (12).jpg'
+    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (4).jpg'
     input_image = load_image(image_path)
     display_image(input_image)
     if input_image is None:

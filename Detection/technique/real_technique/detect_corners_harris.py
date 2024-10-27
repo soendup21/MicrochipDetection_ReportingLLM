@@ -16,7 +16,7 @@ def detect_harris_corners(image):
 
     return image
 
-image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/test_tray3.jpeg'
 image = cv2.imread(image_path)
 corner_image = detect_harris_corners(image)
 
