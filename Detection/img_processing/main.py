@@ -7,8 +7,9 @@ def main():
     start_time = time.time()
 
     # Step 1: Load input image
-    image_path = 'dataset/testing_dataset/tray (3).jpg'
+    image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
     input_image = load_image(image_path)
+    display_image(input_image)
     if input_image is None:
         print("Failed to load input image.")
         return
@@ -26,10 +27,12 @@ def main():
 
     # Step 3: Process rotated image to detect tray
     tray_image, tray_polygons = get_tray(rotated_image, min_area=50000, epsilon_factor=0.02)
+    display_image(tray_image)
     end_time = time.time()
     if tray_polygons:
         for tray_polygon in tray_polygons:
             cropped_tray = crop_polygon(tray_image, tray_polygon)
+            display_image(cropped_tray)
             # Apply warp perspective to the cropped tray image to remove black regions
             warped_tray = warp_perspective_to_fit_object(cropped_tray)
             display_image(warped_tray, "Warped Tray Image Without Black Regions")

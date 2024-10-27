@@ -48,7 +48,7 @@ def get_tray(image, min_area, epsilon_factor=0.02):
 
     # Create a mask that isolates only gray regions
     gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-    display_image(gray_mask,'gray_mask')
+    '''display_image(gray_mask,'gray_mask')'''
     detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
     
     # If no tray detected, try with a modified HSV range
@@ -57,7 +57,7 @@ def get_tray(image, min_area, epsilon_factor=0.02):
         lower_gray = np.array([0, 0, 60])
         upper_gray = np.array([180, 60, 140])
         gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-        display_image(gray_mask,'gray_mask')
+        '''display_image(gray_mask,'gray_mask')'''
         detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
         
     # If no tray detected, try with a modified HSV range
@@ -66,7 +66,7 @@ def get_tray(image, min_area, epsilon_factor=0.02):
         lower_gray = np.array([0, 0, 60])
         upper_gray = np.array([180, 20, 180])
         gray_mask = cv2.inRange(hsv_image, lower_gray, upper_gray)
-        display_image(gray_mask,'gray_mask')
+        '''display_image(gray_mask,'gray_mask')'''
         detected_polygons = find_polygons(output_image, gray_mask, min_area, epsilon_factor)
         
     if detected_polygons:
