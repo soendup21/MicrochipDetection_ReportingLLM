@@ -19,7 +19,7 @@ def load_image(image_path, width=1280, height=720):
     resized_image = cv2.resize(image, (width, height))
     return resized_image
 
-def processing_for_substrates(image, min_width=100, min_height=100, epsilon_factor=0.02):
+def processing_for_substrates(image, min_width=0, min_height=500000, epsilon_factor=0.02):
     output_image = image.copy()
 
     # Increase brightness of the image
