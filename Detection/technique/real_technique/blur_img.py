@@ -36,7 +36,7 @@ def load_image(image_path, width=1280, height=720):
 img = load_image('MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg')
 
 # blur image
-blurred_image = cv2.GaussianBlur(img, (3, 3), 3)
+blurred_image = cv2.GaussianBlur(img, (7, 7), 5)
 
 display_image(blurred_image, "window")
 

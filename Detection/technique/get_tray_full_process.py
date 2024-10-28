@@ -4,6 +4,13 @@ import time
 
 def display_image(image, window_name="Image"):
     if image is not None:
+        # Create a resizable window
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+        
+        # Resize window to a fixed dimension (e.g., 1280x720)
+        cv2.resizeWindow(window_name, 1280, 720)
+        
+        # Display the image
         cv2.imshow(window_name, image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -127,7 +134,7 @@ def crop_polygon(image, polygon):                                       #use in 
 
 # Main program
 start_time = time.time()
-image_path = 'dataset//testing_dataset//tray (1).jpg'
+image_path = 'MicrochipDetection_ReportingLLM/Detection/dataset/testing_dataset/tray (3).jpg'
 img = load_image(image_path)
 if img is not None:
     output_image, polygons = bounding_box(img, min_area=50000, epsilon_factor=0.02)
