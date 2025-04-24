@@ -33,6 +33,7 @@ This project is a comprehensive system for detecting microchip defects, analyzin
 - OpenCV
 - Ultralyitcs YOLO
 - Google Generative AI (optional for LLM integration)
+- CUDA 12+
 
 ## Installation
 
