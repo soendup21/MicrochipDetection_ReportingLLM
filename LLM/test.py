@@ -1,7 +1,7 @@
 # import os
 # import google.generativeai as genai
 
-# GOOGLE_API_KEY="AIzaSyCHiMBVoUebpBUcPzMduXuBezBrPsbOakc"
+
 # GOOGLE_API_KEY=(GOOGLE_API_KEY)
 # genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -32,8 +32,8 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "SONYpassword",
-    database = "SonyDatabaseTest"
+    password = "",
+    database = ""
 )
 cursor = mydb.cursor()
 
